@@ -7,6 +7,7 @@ LiquidCrystal lcd(9, 8, 5, 4, 3, 2);
 
 void setup() {
     Serial.begin(115200);
+    Serial.println("Motor Encoder");
     lcd.begin(16, 2);
     lcd.setCursor(0, 0);
     lcd.print(" MOTOR ENCODER  ");
@@ -21,10 +22,9 @@ int val = 0;
 
 void loop() {
     if (int x = menc_get_direction()){
-        Serial.print("> x = ");
-        Serial.println(x);
         raw += x;
         val = raw / 2;
+        Serial.println(val);
         lcdbar_draw(lcd, 0, val);
         lcd.setCursor(7, 1);
         lcd.print(val);
